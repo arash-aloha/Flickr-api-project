@@ -6,24 +6,55 @@
 
 //decleration of variables
 
-const baseUrl = `https://api.flickr.com/services/rest`;
+const baseUrl = `https://api.flickr.com/services/rest?method=flickr.photos.search`;
 const key = 'e00b7bb42a4363033989d5a2be6a1452';
 
+const imageList = document.querySelector('#images');   // UL element
+const searchInput = document.querySelector('#searchInput');  // input element
+const searchForm = document.querySelector('#form-group');  // form element
 
 
-async function getPhotos() {
-    const response = await fetch(`baseUrl` + `?method=flickr.photos.search`, {
-        headers: {
-            'Authorization': 'Client-ID ' + key
-        }
+// eventlistener in Form-group = searchinput
+
+searchForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    searchInput.focus(); 
+    console.log(searchInput.value);
+    getPhotos(searchInput.value);
+    searchInput.value = ""
+    
+})
+
+/****************************
+getPhotos() 
+    .then(response => {
+        console.log('It works!!!');
     })
-}
+    .catch(error => {
+        console.log('Error!')
+        console.error(error);
+    });
+/*********************************/
 
-const data = await response.json();
-console.log(data)
-}
+//call api
 
-getPhotos();
+async function getPhotos(searchPhotos) {
+    const response = await fetch(`${baseUrl}&api_key=${key}&text=${searchPhotos}&format=json&nojsoncallback=1`); 
+    const data = await response.json();
+    console.log(data);
+    console.log(data.photos);
+};
 
 
-//`https://api.flickr.com/services/rest?method=flickr.photos.search
+
+//render photos
+
+function renderPhotos(photoList) {
+    photoList.forEach(value => {
+        const item = document.createElement('li');
+        item.innerHTML = 'value.';
+        imageList.appendChild(item);
+    });
+};
+
+//methods   'flickr.photos.getSizes'       'flickr.photos.getRecent'
