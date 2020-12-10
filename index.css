@@ -1,6 +1,14 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,900&display=swap');
 
+:root {
+    --orange: #FBD32E;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     font-family: 'montserrat', sans-serif;
@@ -18,7 +26,16 @@ body {
 }
 
 h1 {
-    color: #DF8E00;
+    color: orange;
+}
+
+
+#searchedItem {
+    color: orange;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 34px;
+    text-align: center;
 }
 
 .input {
@@ -31,7 +48,7 @@ h1 {
     font-weight: 300;
     transition: 0.2s ease-out;
     border-radius: 16px 0px 16px 0px;
-    border-bottom: 3px solid #DF8E00;
+    border-bottom: 3px solid orange;
 
 }
 
@@ -39,3 +56,11 @@ h1 {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+
+ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    grid-template-rows: repeat(1, 2fr);
+    grid-gap: 2px;
+}
