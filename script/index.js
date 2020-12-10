@@ -46,7 +46,6 @@ function renderPhotos(photoList) {
     item.innerHTML = `<img src="https://farm${value.farm}.staticflickr.com/${value.server}/${value.id}_${value.secret}.jpg">`;
     });
 
-    
 };
 
 
