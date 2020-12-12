@@ -3,6 +3,8 @@
 
 :root {
     --orange: #FBD32E;
+    --padding: 20;
+    --columns: 3;
 }
 
 
@@ -13,6 +15,9 @@ html {
 body {
     font-family: 'montserrat', sans-serif;
     background-color: #EEE;
+    margin: 0;
+    padding: 0;
+
     
 }
 
@@ -56,11 +61,46 @@ h1 {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-
-ul {
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(3, 3fr);
-    grid-template-rows: repeat(1, 2fr);
-    grid-gap: 2px;
+.gallery-display {
+    margin: 0;
+    padding: 0;
 }
+
+#images {
+
+    list-style-type: none;
+    columns: 5 200px;
+    column-gap: 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+  
+}
+#images img {
+    width: 150px;
+    display: inline-block;
+    width: 100%;
+    padding: .3px;
+    transition: all .25s ease-in-out;
+    border-radius: 8px;
+    box-shadow: 0 0 16px;
+    margin: .9rem;
+    
+    
+}
+
+img {
+      width: 100%;
+      filter: grayscale(100%);
+      transition: all .35s ease-in-out;
+      
+      
+}
+
+li img:hover  {
+    filter: grayscale(0);
+    transform: scale(1.1);
+    width: 100%;
+    transition: all .75s ease-in-out;
+    cursor: pointer;
+}
+ 

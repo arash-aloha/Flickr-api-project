@@ -12,6 +12,7 @@ const imageList = document.querySelector('#images');   // UL element
 const searchInput = document.querySelector('#searchInput');  // input element
 const searchForm = document.querySelector('#form-group');  // form element
 
+let currentPage = 1;
 
 
 
@@ -20,70 +21,81 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault();
     searchInput.focus(); 
     //console.log(searchInput.value);
-    addSearchedItem()
     getPhotos(searchInput.value);
     searchInput.value = ""
     
 })
 
-function addSearchedItem() {
-    let text = document.getElementById('searchedItem')
-    text.insertAdjacentText("afterbegin", 'search result for: ' + searchInput.value);
-}
-
-
 //api function
 async function getPhotos(searchPhotos) {
-
     try {
     //call api
-    const response = await fetch(`${baseUrl}&api_key=${key}&text=${searchPhotos}&format=json&nojsoncallback=1&sort=relevance&per_page=50&page=100`); 
+    const response = await fetch(`${baseUrl}&api_key=${key}&text=${searchPhotos}&format=json&nojsoncallback=1&sort=relevance&per_page=50&page=${currentPage}&extras=url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l&`);
     //await the respons and data
     const data = await response.json();
     console.log(data);
     //console.log(data.photos);
 
+    //new object 
+    let meta = {
+        page: data.photos.page, //a page of pages
+        pages: data.photos.pages, //number of pages
+        perpage: data.photos.perpage, // how many photos are in one page
+        total: data.photos.total, //total number of photos
+        size: data.photos.photo //size
+      };
+      console.log(meta.page, (meta.pages), (meta.perpage), (meta.photo));
+
+      
+      
+
     //call below function - use the received data
     renderPhotos(data.photos);
     
-    //inform the user
+    //inform the user if error
     } catch(error) {
         console.log('Catch Error message: It did not work!')
+        alert('Something went wrong!')
     }
-    
+
+
 }
 
 //render photos
 function renderPhotos(photoList) {
+    //when new search is made - clear previous search
+    imageList.innerHTML = ''
+    //create a list-item for each image
     photoList.photo.forEach(value => {
-    console.log(value)
     const item = document.createElement('li');
+    console.log(value)
+    //add li element and data
     imageList.appendChild(item);
     item.innerHTML = `<img src="https://farm${value.farm}.staticflickr.com/${value.server}/${value.id}_${value.secret}.jpg">`;
-    //item.style.cssText = 'width'
     
-    });
-    
-};
-
-let meta = {
-    page: data.photos.page, //a page of pages
-    pages: data.photos.pages, //number of pages
-    perpage: data.photos.perpage, // how many photos are in one page
-    total: data.photos.total //total number of photos
-  };
-
-
-  { console.log(data.perpage);
-    photos = _.filter(photos, function(item) {return item});
-
-  
+    //item.style.cssText = 'display:flex; flex-wrap: wrap; align-items: center; width: 100%;'  
+        
+    });  
 };
 
 
 
-//methods   'flickr.photos.getSizes'       
-//          'flickr.photos.getRecent'
+//pagination
+nextPage.addEventListener('click', () => {
+    
+    currentPage++;
+    console.log(nextPage)
+    renderPhotos(meta.page)
+    console.log(renderPhotos)
+});
+
+//onclick image full-screen
+
+
+
+
+
+
 
 
 
@@ -106,3 +118,18 @@ getPhotos()
         console.error(error);
     });
 *********************************/
+
+
+
+/********************************
+ * 
+/*
+
+let meta = {
+    page: data.photos.page, //a page of pages
+    pages: data.photos.pages, //number of pages
+    perpage: data.photos.perpage, // how many photos are in one page
+  };
+
+
+******************************************/
