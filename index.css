@@ -3,8 +3,7 @@
 
 :root {
     --orange: #FBD32E;
-    --padding: 20;
-    --columns: 3;
+
 }
 
 
@@ -24,7 +23,6 @@ body {
 .container {
     display: flex;
     flex-direction: column;
-    max-width: 1100px;
     align-items: center;
     justify-content: center;
 }
@@ -53,11 +51,21 @@ h1 {
     transition: 0.2s ease-out;
     border-radius: 16px 0px 16px 0px;
     border-bottom: 3px solid orange;
-
 }
 
 .input:focus {
     background-color: rgba(255, 255, 255, 0.8);
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /*height: 100vh*/
+  /*widht: 100vw*/
 }
 
 .gallery-display {

@@ -30,7 +30,7 @@ searchForm.addEventListener('submit', (e) => {
 async function getPhotos(searchPhotos) {
     try {
     //call api
-    const response = await fetch(`${baseUrl}&api_key=${key}&text=${searchPhotos}&format=json&nojsoncallback=1&sort=relevance&per_page=50&page=${currentPage}&extras=url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l&`);
+    const response = await fetch(`${baseUrl}&api_key=${key}&text=${searchPhotos}&format=json&nojsoncallback=1&sort=relevance&per_page=50&page=${currentPage}&extras=url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l`);
     //await the respons and data
     const data = await response.json();
     console.log(data);
@@ -42,9 +42,9 @@ async function getPhotos(searchPhotos) {
         pages: data.photos.pages, //number of pages
         perpage: data.photos.perpage, // how many photos are in one page
         total: data.photos.total, //total number of photos
-        size: data.photos.photo //size
+        extras: data.photos.photo //size
       };
-      console.log(meta.page, (meta.pages), (meta.perpage), (meta.photo));
+      console.log(meta.page, (meta.pages), (meta.perpage), (meta.extras));
 
       
       
@@ -69,6 +69,15 @@ function renderPhotos(photoList) {
     photoList.photo.forEach(value => {
     const item = document.createElement('li');
     console.log(value)
+
+    //eventlistener for full-screen image
+    item.addEventListener('click', () => {
+        overlayImage(photoList.meta.url_l)
+        console.log(overlayImage)
+    })
+
+
+
     //add li element and data
     imageList.appendChild(item);
     item.innerHTML = `<img src="https://farm${value.farm}.staticflickr.com/${value.server}/${value.id}_${value.secret}.jpg">`;
@@ -89,8 +98,14 @@ nextPage.addEventListener('click', () => {
     console.log(renderPhotos)
 });
 
-//onclick image full-screen
 
+
+
+//onclick image full-screen
+let overlayImage = (photoList) => {
+    console.log(photoList);
+
+}
 
 
 
