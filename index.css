@@ -53,19 +53,65 @@ h1 {
     border-bottom: 3px solid orange;
 }
 
+
 .input:focus {
     background-color: rgba(255, 255, 255, 0.8);
+    
 }
 
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /*height: 100vh*/
-  /*widht: 100vw*/
+
+
+.slideshowContainer {
+    display: none;
+    box-sizing: border-box;
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+  
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: orange;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 8px;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 5.5);
+    opacity: 0.7;
+}
+
+.centered-dots {
+    text-align: center;
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    border-radius: 8px;
+    margin: 0 2px;
+    background-color: orange;
+    display: inline-block;
+    transition: 0.6s ease;
+}
+  
+.active, .dot:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    
 }
 
 .gallery-display {
@@ -79,7 +125,7 @@ h1 {
     columns: 5 300px;
     column-gap: 1.5rem;
     width: 90%;
-    margin: 0 auto;
+    
   
 }
 #images img {
@@ -91,9 +137,9 @@ h1 {
     border-radius: 8px;
     box-shadow: 0 0 16px;
     margin: .9rem;
-    
-    
+       
 }
+
 /*
 img {
       width: 100%;

@@ -16,21 +16,38 @@
         <form id="form-group">
         
             <input id="searchInput" class="input" type="text" autocomplete="off"  placeholder="Search for photos, people and more..."></input>
-            <button type="submit">Show me the möönnnääyyy</button>
+            <button type="submit">Search</button>
+            
            
         </form>    
 
         <section class="display-gallery">
             
+            <!-- display search-input from user -->
             <h3 id="searchedItem"></h3>
             
-            <section class="overlay" id="overlay"></section>
-            <ul id="images"></ul>
+                <ul class="slides" id="images"></ul>
+
+            <section class="slideshowContainer" id="slideshowContainer">
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <br>
+
+                <!-- The dots -->
+                <div class="centered-dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </section>
 
         </section>
+    
     </div>
-
-    <button id="nextPage">Next Page</button>
+    
 
     <script src="script/index.js"></script>
 </body>

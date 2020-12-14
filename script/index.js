@@ -36,18 +36,17 @@ async function getPhotos(searchPhotos) {
     console.log(data);
     //console.log(data.photos);
 
+
+
     //new object 
     let meta = {
         page: data.photos.page, //a page of pages
         pages: data.photos.pages, //number of pages
         perpage: data.photos.perpage, // how many photos are in one page
         total: data.photos.total, //total number of photos
-        extras: data.photos.photo //size
-      };
-      console.log(meta.page, (meta.pages), (meta.perpage), (meta.extras));
-
-      
-      
+        extras: data.photos.url //size
+    };
+        console.log(meta.page, (meta.pages), (meta.perpage), (meta.extras));
 
     //call below function - use the received data
     renderPhotos(data.photos);
@@ -57,8 +56,6 @@ async function getPhotos(searchPhotos) {
         console.log('Catch Error message: It did not work!')
         alert('Something went wrong!')
     }
-
-
 }
 
 //render photos
@@ -70,42 +67,64 @@ function renderPhotos(photoList) {
     const item = document.createElement('li');
     console.log(value)
 
-    //eventlistener for full-screen image
+
+    
+    //eventlistener for click on image
     item.addEventListener('click', () => {
-        overlayImage(photoList.meta.url_l)
-        console.log(overlayImage)
+        showSlides(slideIndex, value)
     })
-
-
 
     //add li element and data
     imageList.appendChild(item);
     item.innerHTML = `<img src="https://farm${value.farm}.staticflickr.com/${value.server}/${value.id}_${value.secret}.jpg">`;
+    //item.style.cssText = 'display:flex; flex-wrap: wrap; align-items: center; width: 100%;'        
+
+
     
-    //item.style.cssText = 'display:flex; flex-wrap: wrap; align-items: center; width: 100%;'  
+//First slide image set to 1
+let slideIndex = 1
+showSlides(slideIndex);
+console.log(slideIndex)
+
+
+//next/previous controls
+function plusSlides(image) {
+showSlides(slideIndex += image);
+console.log(image)
+}
+
+//thumnail image controls
+function currentSlide(image) {
+showSlides(slideIndex = image);
+console.log(image)
+}
+
+function showSlides(value) {
+    
+let i;
+let slidePhotos = document.getElementsByClassName('slides')
+let dot = document.getElementsByClassName('dot')
+        
+        if (value > slidePhotos.length) {
+            slideIndex = 1; { 
+                console.log(slidePhotos)
+            } if (value < 1) {
+            slideIndex = slidePhotos.length; }
+            } for (i = 0; i < slidePhotos.length; i++) {
+                slidePhotos[i].style.display = "display";
+            } for (i = 0; i < dot.length; i++) {
+                dot[i].className = dot[i].className.replace(" active", "");
+            } slidePhotos[slideIndex-1].style.display = "block";
+            dot[slideIndex-1].className += " active";
+        }
         
     });  
 };
 
 
 
-//pagination
-nextPage.addEventListener('click', () => {
-    
-    currentPage++;
-    console.log(nextPage)
-    renderPhotos(meta.page)
-    console.log(renderPhotos)
-});
 
 
-
-
-//onclick image full-screen
-let overlayImage = (photoList) => {
-    console.log(photoList);
-
-}
 
 
 
@@ -148,3 +167,12 @@ let meta = {
 
 
 ******************************************/
+
+/*****************************************
+//fetch getSizes
+async function getImageSizez(getImageSize) {
+    const imageResponse = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&&api_key=${key}&text=${getImageSize}&photo_id=${getImageSizez}&format=json&nojsoncallback=1`);
+    const imageData = await imageResponse.json();
+    console.log(imageData);
+}
+ ****************************************/
