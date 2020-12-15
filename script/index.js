@@ -12,8 +12,8 @@ const imageList = document.querySelector('#images');   // UL element
 const searchInput = document.querySelector('#searchInput');  // input element
 const searchForm = document.querySelector('#form-group');  // form element
 const searchedItem = document.getElementById('searchedItem');
-let currentPage = 1;
 
+let currentPage = 1;
 
 
 // eventlistener in Form-group = searchinput
@@ -99,107 +99,53 @@ function renderPhotos(photoList) {
     item.innerHTML = `<img src="https://farm${value.farm}.staticflickr.com/${value.server}/${value.id}_${value.secret}.jpg">`;
      
 });
+
+     //First slide image set to 1
+ let slideIndex = 1
+
+
+ //next/previous controls - instead of onclick in html
+ function moveSlides() {
+   let next = getElementsByClassName('next').addEventListener('click', () => {
+       console.log(next)
+   })
+   let prev = getElementsByClassName('prev').addEventListener('click', () => {
+       console.log(prev)
+   })
+ }
+ 
+ 
+ //display slide carusel
+ 
+ function showSlides() {
+     let slideContainer = document.getElementsByClassName('slideshowContainer')
+     let dot = document.getElementsByClassName('dot')
+     let image = document.getElementsByClassName('li')
+ 
+   if (image > slidePhotos.length) {
+       console.log(image)
+       slideIndex = 1; {
+ 
+       } if (value < 1) {
+           slideIndex = slidePhotos.length;
+       }
+
+    }
 };
 
 
 
 
 
- //First slide image set to 1
- let slideIndex = 1
- showSlides(slideIndex);
- console.log(slideIndex)
 
 
-
-//next/previous controls - instead of onclick in html
-function plusSlides(image) {
-  let next = getElementsByClassName('next').addEventListener('click', () => {
-      console.log(next)
-  })
-  let prev = getElementsByClassName('prev').addEventListener('click', () => {
-      console.log(prev)
-  })
-
-  showSlides(slideIndex += image);
+function pagination() {
+let nextPage = document.getElementById('nextPage').addEventListener('click', () => {
+    console.log(nextPage)
+})
+let prevPage = document.getElementById('prevPage').addEventListener('click', () => {
+    console.log(prevPage)
+})
 }
 
-
-//display fullscreen image
-
-function showSlides(value) {
-  let slidePhotos = document.getElementsByClassName('slides')
-  let dot = document.getElementsByClassName('dot')
-
-  if (value > slidePhotos.length) {
-      console.log(value)
-      slideIndex = 1; {
-
-      } if (value < 1) {
-          slideIndex = slidePhotos.length;
-      }
-  } for (i = 0; i < slidePhotos.length; i++) {
-      slidePhotos[i].style.display = "display";
-  } for (i = 0; i < dot.length; i++) {
-      dot[i].className = dot[i].className.replace(" active", "");
-  } slidePhotos[slideIndex - 1].style.display = "block";
-  dot[slideIndex - 1].className += " active";
-}
-
-//thumnail image controls
-function currentSlide(image) {
-    showSlides(slideIndex = image);
-    console.log(showSlides(slideIndex))
-}
-
-
-
-
-
-
-
-
-
-
-
-/*********************
-
-D e l e t e d  c o d e s
-
-**********************/
-
-
-/********************************
-getPhotos()
-    .then(response => {
-        console.log('It works!!!');
-    })
-    .catch(error => {
-        console.log('Error!')
-        console.error(error);
-    });
-*********************************/
-
-
-
-/********************************
- *
-/*
-
-let meta = {
-    page: data.photos.page, //a page of pages
-    pages: data.photos.pages, //number of pages
-    perpage: data.photos.perpage, // how many photos are in one page
-  };
-
-
-******************************************/
-
-/*****************************************
-//fetch getSizes
-async function getImageSizez(getImageSize) {
-    const imageResponse = await fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.getSizes&&api_key=${key}&text=${getImageSize}&photo_id=${getImageSizez}&format=json&nojsoncallback=1`);
-    const imageData = await imageResponse.json();
-    console.log(imageData);
-}
- ****************************************/
+pagination()
