@@ -119,33 +119,25 @@ function renderPhotos(photoList) {
  
  function showSlides() {
      let slideContainer = document.getElementsByClassName('slideshowContainer')
+     let slides = document.getElementsByClassName('li')
      let dot = document.getElementsByClassName('dot')
-     let image = document.getElementsByClassName('li')
+     let image = 
+
+     console.log(image)
  
-   if (image > slidePhotos.length) {
-       console.log(image)
-       slideIndex = 1; {
- 
-       } if (value < 1) {
-           slideIndex = slidePhotos.length;
-       }
-
-    }
-};
-
-
-
-
-
-
-
-function pagination() {
-let nextPage = document.getElementById('nextPage').addEventListener('click', () => {
-    console.log(nextPage)
-})
-let prevPage = document.getElementById('prevPage').addEventListener('click', () => {
-    console.log(prevPage)
-})
 }
 
-pagination()
+
+
+
+
+//Pagination
+
+function pagination() {
+    let nextPage = document.getElementById('nextPage').addEventListener('click', () => {
+        console.log(nextPage)
+    })
+    let prevPage = document.getElementById('prevPage').addEventListener('click', () => {
+        console.log(prevPage)
+    })
+}};
