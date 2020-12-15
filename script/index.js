@@ -11,20 +11,41 @@ const key = 'e00b7bb42a4363033989d5a2be6a1452';
 const imageList = document.querySelector('#images');   // UL element
 const searchInput = document.querySelector('#searchInput');  // input element
 const searchForm = document.querySelector('#form-group');  // form element
-
+const searchedItem = document.getElementById('searchedItem');
 let currentPage = 1;
 
 
 
 // eventlistener in Form-group = searchinput
 searchForm.addEventListener('submit', (e) => {
+    //prevent webpage from default mode
     e.preventDefault();
+    //search bar will be automatically be chosen after search hit
     searchInput.focus(); 
     //console.log(searchInput.value);
+    //call below function
     getPhotos(searchInput.value);
+    //deletes user input in search bar
+    displayWord()
     searchInput.value = ""
-    
+    //displayWord()
 })
+
+//
+displayWord = function() {
+    //searchInput.innerHTML = null;
+    let userInput = document.getElementById('searchInput').value
+    console.log(userInput)
+
+    if (userInput.length > 0) {
+        console.log(userInput.length)
+        document.getElementById('searchedItem').innerHTML = "search results for: " + userInput;   
+    } else {
+        console.log(false)
+    }
+}
+
+
 
 //api function
 async function getPhotos(searchPhotos) {
@@ -68,7 +89,6 @@ function renderPhotos(photoList) {
     console.log(value)
 
 
-    
     //eventlistener for click on image
     item.addEventListener('click', () => {
         showSlides(slideIndex, value)
@@ -77,53 +97,60 @@ function renderPhotos(photoList) {
     //add li element and data
     imageList.appendChild(item);
     item.innerHTML = `<img src="https://farm${value.farm}.staticflickr.com/${value.server}/${value.id}_${value.secret}.jpg">`;
-    //item.style.cssText = 'display:flex; flex-wrap: wrap; align-items: center; width: 100%;'        
-
-
-    
-//First slide image set to 1
-let slideIndex = 1
-showSlides(slideIndex);
-console.log(slideIndex)
-
-
-//next/previous controls
-function plusSlides(image) {
-showSlides(slideIndex += image);
-console.log(image)
-}
-
-//thumnail image controls
-function currentSlide(image) {
-showSlides(slideIndex = image);
-console.log(image)
-}
-
-function showSlides(value) {
-    
-let i;
-let slidePhotos = document.getElementsByClassName('slides')
-let dot = document.getElementsByClassName('dot')
-        
-        if (value > slidePhotos.length) {
-            slideIndex = 1; { 
-                console.log(slidePhotos)
-            } if (value < 1) {
-            slideIndex = slidePhotos.length; }
-            } for (i = 0; i < slidePhotos.length; i++) {
-                slidePhotos[i].style.display = "display";
-            } for (i = 0; i < dot.length; i++) {
-                dot[i].className = dot[i].className.replace(" active", "");
-            } slidePhotos[slideIndex-1].style.display = "block";
-            dot[slideIndex-1].className += " active";
-        }
-        
-    });  
+     
+});
 };
 
 
 
 
+
+ //First slide image set to 1
+ let slideIndex = 1
+ showSlides(slideIndex);
+ console.log(slideIndex)
+
+
+
+//next/previous controls - instead of onclick in html
+function plusSlides(image) {
+  let next = getElementsByClassName('next').addEventListener('click', () => {
+      console.log(next)
+  })
+  let prev = getElementsByClassName('prev').addEventListener('click', () => {
+      console.log(prev)
+  })
+
+  showSlides(slideIndex += image);
+}
+
+
+//display fullscreen image
+
+function showSlides(value) {
+  let slidePhotos = document.getElementsByClassName('slides')
+  let dot = document.getElementsByClassName('dot')
+
+  if (value > slidePhotos.length) {
+      console.log(value)
+      slideIndex = 1; {
+
+      } if (value < 1) {
+          slideIndex = slidePhotos.length;
+      }
+  } for (i = 0; i < slidePhotos.length; i++) {
+      slidePhotos[i].style.display = "display";
+  } for (i = 0; i < dot.length; i++) {
+      dot[i].className = dot[i].className.replace(" active", "");
+  } slidePhotos[slideIndex - 1].style.display = "block";
+  dot[slideIndex - 1].className += " active";
+}
+
+//thumnail image controls
+function currentSlide(image) {
+    showSlides(slideIndex = image);
+    console.log(showSlides(slideIndex))
+}
 
 
 
@@ -143,7 +170,7 @@ D e l e t e d  c o d e s
 
 
 /********************************
-getPhotos() 
+getPhotos()
     .then(response => {
         console.log('It works!!!');
     })
@@ -156,7 +183,7 @@ getPhotos()
 
 
 /********************************
- * 
+ *
 /*
 
 let meta = {

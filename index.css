@@ -38,6 +38,7 @@ h1 {
     font-weight: 500;
     font-size: 34px;
     text-align: center;
+    
 }
 
 .input {
@@ -62,7 +63,7 @@ h1 {
 
 
 .slideshowContainer {
-    display: none;
+    
     box-sizing: border-box;
     max-width: 1000px;
     position: relative;
