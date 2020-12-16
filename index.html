@@ -17,15 +17,15 @@
             
                 <input id="searchInput" class="input" type="text" autocomplete="off"  placeholder="Search for photos, people and more..."></input>
                 <button type="submit">Search</button>
-                <!-- display search-input from user -->
-                <h3 id="searchedItem"></h3>
+
             
             </form>    
         </header>
         
         <section class="display-gallery">
             
-
+            <!-- display search-input from user -->
+            <h3 id="searchedItem"></h3>
             
                 <ul class="slides" id="images"></ul>
 
@@ -45,8 +45,12 @@
                 </div>
             </section>
 
-            <a id="prevPage" class="prevPage">Prev</a>
-            <a id="nextPage" class="nextPage">Next</a>
+            <nav>
+                <div id="listingTable"></div>
+                <a id="prevPage" class="prevPage">&#10094;</a>
+                 <a id="pageNumber" id="pageNumber">xx</a>
+                <a id="nextPage" class="nextPage">&#10095;</a>
+            </nav>
         </section>
     
     </div>

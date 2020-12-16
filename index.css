@@ -75,8 +75,16 @@ button {
     margin: 8px;
     padding: 8px;
     border-radius: 8px;
+    font-weight: bold;
+    font-family: 'montserrat', sans-serif;
 }
 
+button:hover {
+    color: orange;
+    background-color: rgba(0, 0, 0, 7.5);   
+    transition: ease-out .3s;
+    cursor: pointer;
+}
 
 
 .slideshowContainer {
@@ -84,9 +92,10 @@ button {
     max-width: 1000px;
     position: relative;
     margin: auto; 
+    display: none;
 }
 
-.prev, .next {
+.prev, .next, .prevPage, .nextPage {
     cursor: pointer;
     position: absolute;
     top: 50;
@@ -100,12 +109,17 @@ button {
     border-radius: 8px;
 }
 
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
+.next, .nextPage {
+    right: 10%;
+    border-radius: 8px;
 }
 
-.prev:hover, .next:hover {
+.prev, .prevPage {
+    left: 10%;
+    border-radius: 8px
+}
+
+.prev:hover, .prevPage:hover, .nextPage:hover, .next:hover {
     background-color: rgba(0, 0, 0, 5.5);
     opacity: 0.7;
 }
@@ -175,4 +189,10 @@ li img:hover  {
     transition: all .75s ease-in-out;
     cursor: pointer;
 }
- 
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
